@@ -5,6 +5,7 @@
   "dependencies": {
     "ajv": "^6.5.3",
     "firebase": "^5.4.0",
+    "lodash": "^4.17.10",
     "npm": "^6.4.0",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.2",
