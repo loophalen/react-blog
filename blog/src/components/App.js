@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react' 
+import {database} from '../firebase'
 
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
       body: ''
     }
     this.onInputChange = this.onInputChange.bind(this)
+    this.onHandleSubmit = this.onHandleSubmit.bind(this)
   }
 
   onInputChange(event){
@@ -17,13 +19,30 @@ class App extends Component {
     })
   }
 
+  onHandleSubmit(event){
+    event.preventDefault()
+    const post = {
+      title: this.state.title , 
+      body: this.state.body
+    }
+    database.push(post)
+  }
+
   render() {
     return (
       <div className="container">
-        <form>
-          <input type="text" name="title" placeholder="Title" onChange={this.onInputChange} ref="title" />
-          <input type="text" name="body" placeholder="body" onChange={this.onInputChange} ref="body" />
-          <button>Post</button>
+        <form onSubmit={this.onHandleSubmit}>
+          <div className="form-input">
+            <input type="text" name="title" placeholder="Title" onChange={this.onInputChange} ref="title" 
+            className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <input type="text" name="body" placeholder="body" onChange={this.onInputChange} ref="body" 
+            className ="form-control"
+            />
+          </div>
+          <button className="btn-btn-primary">Post</button>
         </form>
   
      
